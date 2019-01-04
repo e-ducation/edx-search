@@ -588,6 +588,9 @@ class ElasticSearchEngine(SearchEngine):
             }
 
         body = {"query": query}
+        if hasattr(settings, 'SEARCH_SORT'):
+            body["sort"] = settings.SEARCH_SORT
+
         if facet_terms:
             facet_query = _process_facet_terms(facet_terms)
             if facet_query:
