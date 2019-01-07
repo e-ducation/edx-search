@@ -588,7 +588,7 @@ class ElasticSearchEngine(SearchEngine):
             }
 
         body = {"query": query}
-        if hasattr(settings, 'SEARCH_SORT'):
+        if hasattr(settings, 'SEARCH_SORT') and not query_string:
             body["sort"] = settings.SEARCH_SORT
 
         if facet_terms:
